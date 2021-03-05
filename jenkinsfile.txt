@@ -1,0 +1,19 @@
+node
+{
+ stage('git')
+   {
+     git 'https://github.com/rajeshhanamkonda/spring-petclinic.git'
+   }
+ stage('build')
+   {
+    sh 'mvn package'
+   }
+ stage('artifact')
+   {
+     archive 'target/*.jar'
+   }
+ stage('testresults')
+   {
+     junit 'target/surefire-results/*.xml'
+   }
+}
